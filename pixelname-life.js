@@ -88,7 +88,7 @@ export function createPixelName(el, text, opts = {}) {
 
   let cols = 0, rows = 0, n = 0, mask, alive, buf, age, ghost, cur, tgt;
   let pitch = 0, dpr = 1, W = 0, H = 0;
-  let raf = 0, lastT = 0, acc = 0, visible = true;
+  let raf = 0, lastT = 0, acc = 0, visible = true, hover = false;
 
   function layout() {
     const avail = el.parentElement.getBoundingClientRect().width;
@@ -158,7 +158,7 @@ export function createPixelName(el, text, opts = {}) {
     for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
       const k = j * cols + i;
       if (!mask[k]) continue; // only letter cells are drawn; Life still runs underneath
-      const a = o.glyphLo + (o.glyphHi - o.glyphLo) * cur[k];
+      const a = hover ? 1 : o.glyphLo + (o.glyphHi - o.glyphLo) * cur[k];
       const q = Math.round(a * 60);
       if (q <= 0) continue;
       let list = buckets.get(q);
@@ -188,6 +188,9 @@ export function createPixelName(el, text, opts = {}) {
     if (!raf && visible && !mqReduce.matches) raf = requestAnimationFrame(frame);
   }
 
+  canvas.title = 'Ryan P Smith. Hover for a solid view; the letters are a Game of Life.';
+  canvas.addEventListener('mouseenter', () => { hover = true; draw(); });
+  canvas.addEventListener('mouseleave', () => { hover = false; draw(); });
   readInk();
   layout();
   if (mqReduce.matches) { for (let q = 0; q < 6; q++) step(); cur.set(tgt); }

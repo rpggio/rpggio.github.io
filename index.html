@@ -6,6 +6,8 @@
 <title>Ryan P Smith · Projects</title>
 <meta name="description" content="Selected product engineering work by Ryan P Smith.">
 <meta name="color-scheme" content="light dark">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -34,7 +36,7 @@ a:hover{color:var(--accent)}
 
 /* masthead */
 .mast{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding:64px 0 0 var(--gut)}
-.mast nav{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;padding-top:4px}
+.mast nav{display:flex;gap:16px;flex-wrap:wrap;padding-top:2px}
 .id{font-family:var(--mono)}
 .id{flex:1 1 auto;min-width:0}
 .id .ps{color:var(--accent)}
@@ -117,6 +119,9 @@ main .proj:first-of-type{padding-top:64px}
 .about .prose p:last-child{margin-bottom:0}
 .foot{margin-left:var(--gut);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:88px;padding:28px 0 48px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:13px;color:var(--muted)}
 .foot nav{display:flex;gap:20px;flex-wrap:wrap}
+.ico{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;color:var(--fg)}
+.ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ico:hover{color:var(--accent)}
 
 @media (max-width: 800px){
   :root{--pad:20px}
@@ -158,9 +163,9 @@ main .proj:first-of-type{padding-top:64px}
       <p class="intro"><span class="ps" aria-hidden="true">&gt;</span>Product engineer · West Linn, Oregon</p>
     </div>
     <nav aria-label="Contact">
-      <a href="mailto:ryan.smith@pobox.com">Email</a>
-      <a href="https://linkedin.com/in/rpggio">LinkedIn</a>
-      <a href="https://github.com/rpggio">GitHub</a>
+<a class="ico" href="mailto:hello_ryan@sent.com" title="Email: hello_ryan@sent.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a>
+      <a class="ico" href="https://linkedin.com/in/rpggio" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.2c0-1.6 1-2.7 2.5-2.7S17 11.5 17 13.2V17"/></svg></a>
+      <a class="ico" href="https://github.com/rpggio" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
     </nav>
   </header>
 
@@ -328,17 +333,17 @@ main .proj:first-of-type{padding-top:64px}
   <section class="about" id="about" aria-labelledby="about-t">
     <h2 class="vlabel sect" id="about-t">About</h2>
     <div class="prose">
-      <p>I have built web applications for over twenty years, most recently as a staff and lead engineer at early-stage companies. The work I do best sits between product and engineering: settling scope with founders and product managers, designing the core interaction and data model, and building a frontend the team can keep extending.</p>
-      <p>Most of that work is in React and TypeScript, with state and data modeling, interactive visualization and maps, and backend work in TypeScript, Go, C#, Python and Kotlin. Recently I have been building AI products, and building with AI agents as the primary implementers under a design and review process I set up.</p>
+      <p>I have built applications and systems for over twenty years, most recently as a staff and lead engineer at early-stage companies. The work I do best sits between product and engineering: settling scope with founders and product managers, designing the core interaction and data model, and building a frontend the team can keep extending.</p>
+      <p>Much of my work is in TypeScript and React / Vanilla JS, with state and data modeling, interactive visualization and maps; backend work in TypeScript, Go, C#, Python and Kotlin. Recently I have been building AI products, and building with AI agents as the primary implementers under a design and review process I set up.</p>
     </div>
   </section>
 
   <footer class="foot">
     <span>Ryan P Smith</span>
     <nav aria-label="Contact">
-      <a href="mailto:ryan.smith@pobox.com">ryan.smith@pobox.com</a>
-      <a href="https://linkedin.com/in/rpggio">LinkedIn</a>
-      <a href="https://github.com/rpggio">GitHub</a>
+<a class="ico" href="mailto:hello_ryan@sent.com" title="Email: hello_ryan@sent.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a>
+      <a class="ico" href="https://linkedin.com/in/rpggio" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.2c0-1.6 1-2.7 2.5-2.7S17 11.5 17 13.2V17"/></svg></a>
+      <a class="ico" href="https://github.com/rpggio" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
     </nav>
   </footer>
 </div>

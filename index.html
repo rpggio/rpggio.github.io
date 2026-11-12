@@ -104,6 +104,7 @@ main .proj:first-of-type{padding-top:64px}
 .clamp.is-clamped{cursor:pointer}
 .clamp.is-clamped{max-height:12.5em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
 .more{all:unset;cursor:pointer;margin-top:2px;font-family:var(--mono);font-size:13px;color:var(--fg);display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.more[hidden]{display:none}
 .more::before{content:"[";color:var(--muted)}.more::after{content:"]";color:var(--muted)}
 .more:hover{color:var(--accent)}
 .more:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -165,6 +166,40 @@ main .proj:first-of-type{padding-top:64px}
 
   <main>
     <h2 class="vlabel sect">Projects</h2>
+    <section class="proj" id="pdf-mira" aria-labelledby="pdf-mira-t">
+      <header class="phead">
+        <h2 id="pdf-mira-t">PDF Mira</h2>
+        <p class="lede">A research PDF reader proof of concept that links AI-generated argument maps to passages in the paper.</p>
+      </header>
+      <div class="media">
+        <div class="stage" id="pdf-mira-stage">
+          <div class="slide slide-img" data-i="0"><img src="media/pdf-mira-map.jpg" alt="An argument map beside the original PDF, with a selected claim linked to its highlighted source passage."></div>
+          <div class="slide slide-img" data-i="1" hidden><img src="media/pdf-mira-sequence.jpg" alt="The same research paper beside claims and evidence arranged in paper order, with arrows to related records." loading="lazy"></div>
+          <div class="slide slide-video" data-i="2" hidden><video src="media/pdf-mira-walkthrough.mp4" poster="media/pdf-mira-library.jpg" aria-label="Silent walkthrough of PDF Mira, from the sample library to source highlighting and synchronized scrolling" muted loop playsinline controls preload="none"></video></div>
+        </div>
+        <div class="thumbs">
+          <button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-map.jpg" alt=""></span><span class="tlabel">Argument map</span></button>
+          <button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-sequence.jpg" alt="" loading="lazy"></span><span class="tlabel">Sequence view</span></button>
+          <button type="button" class="thumb" data-i="2" aria-pressed="false" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-library.jpg" alt=""><span class="play" aria-hidden="true"></span></span><span class="tlabel">Walkthrough, 21s</span></button>
+        </div>
+      </div>
+      <div class="detail">
+        <ul class="facts">
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2026</span></li>
+          <li class="ext"><a href="https://pdf-mira.exe.xyz/">Open preview ↗</a></li>
+          <li class="ext"><a href="https://discoursegraphs.com/">Discourse Graphs ↗</a></li>
+          <li class="ext"><a href="https://www.mira.science/">MIRA ↗</a></li>
+        </ul>
+        <ul class="vlabel tech" aria-label="Stack"><li>React</li><li>TypeScript</li><li>PDF.js</li><li>React Flow</li><li>LLM</li><li>exe.dev</li></ul>
+        <div class="body">
+          <div class="prose clamp" id="pdf-mira-text">
+            <p>Drawing on Discourse Graphs, PDF Mira explores whether a map of a paper’s questions, claims and evidence can help readers follow its reasoning. Add an arXiv paper and the prototype generates a map in the MIRA format alongside the PDF. Select a card to jump to its source passage, or click a margin mark in the PDF to find the corresponding card.</p>
+            <p>The map labels inferred links and estimated passage locations, and keeps AI-written card text visually separate from the author’s words. An outline shows how the argument fits together, and the Sequence view follows the order of the paper, scrolling in sync with the PDF.</p>
+          </div>
+          <button type="button" class="more" aria-expanded="false" aria-controls="pdf-mira-text" hidden>More</button>
+        </div>
+      </div>
+    </section>
     <section class="proj" id="remfind" aria-labelledby="remfind-t">
       <header class="phead">
         <h2 id="remfind-t">Remnant Locator</h2>
@@ -193,8 +228,8 @@ main .proj:first-of-type{padding-top:64px}
         <p class="lede">A Microsoft Word add-in that reviews and drafts contracts against a legal team&#x27;s playbook.</p>
       </header>
       <div class="media">
-        <div class="stage" id="pincites-stage"><div class="slide slide-img" data-i="0"><img src="media/pincites-drafting.jpg" alt="Pincites: Drafting" loading="lazy"></div><div class="slide slide-img" data-i="1" hidden><img src="media/pincites-redline-wd.jpg" alt="Pincites: Redline review" loading="lazy"></div></div>
-        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="pincites-stage"><span class="timg"><img src="media/pincites-drafting.jpg" alt="" loading="lazy"></span><span class="tlabel">Drafting</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="pincites-stage"><span class="timg"><img src="media/pincites-redline-wd.jpg" alt="" loading="lazy"></span><span class="tlabel">Redline review</span></button></div>
+        <div class="stage" id="pincites-stage"><div class="slide slide-img" data-i="0"><img src="media/pincites-redline-wd.jpg" alt="Pincites: Redline review" loading="lazy"></div><div class="slide slide-img" data-i="1" hidden><img src="media/pincites-drafting.jpg" alt="Pincites: Drafting" loading="lazy"></div></div>
+        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="pincites-stage"><span class="timg"><img src="media/pincites-redline-wd.jpg" alt="" loading="lazy"></span><span class="tlabel">Redline review</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="pincites-stage"><span class="timg"><img src="media/pincites-drafting.jpg" alt="" loading="lazy"></span><span class="tlabel">Drafting</span></button></div>
       </div>
       <div class="detail">
         <ul class="facts">
@@ -259,7 +294,15 @@ main .proj:first-of-type{padding-top:64px}
         <p class="lede">Branching AI conversations on a visual canvas.</p>
       </header>
       <div class="media">
-        <div class="stage" id="chatstream-stage"><div class="slide slide-img" data-i="0"><img src="media/chat-stream-example.jpg" alt="Chat Stream: Branching thread" loading="lazy"></div><div class="slide slide-img" data-i="1" hidden><img src="media/chat-stream-example-2.jpg" alt="Chat Stream: Planning canvas" loading="lazy"></div></div>
+        <div class="stage" id="chatstream-stage">
+          <div class="slide slide-img" data-i="0">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="media/chat-stream-example.jpg">
+              <img src="media/chat-stream-example.gif" alt="Chat Stream: Branching thread on the Obsidian canvas" loading="lazy">
+            </picture>
+          </div>
+          <div class="slide slide-img" data-i="1" hidden><img src="media/chat-stream-example-2.jpg" alt="Chat Stream: Planning canvas" loading="lazy"></div>
+        </div>
         <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="chatstream-stage"><span class="timg"><img src="media/chat-stream-example.jpg" alt="" loading="lazy"></span><span class="tlabel">Branching thread</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="chatstream-stage"><span class="timg"><img src="media/chat-stream-example-2.jpg" alt="" loading="lazy"></span><span class="tlabel">Planning canvas</span></button></div>
       </div>
       <div class="detail">
@@ -271,7 +314,11 @@ main .proj:first-of-type{padding-top:64px}
         </ul>
         <ul class="vlabel tech" aria-label="Stack"><li>TypeScript</li><li>Obsidian</li><li>LLM</li></ul>
         <div class="body">
-          <div class="prose clamp" id="chatstream-text"><p>Chat Stream is a plugin for Obsidian&#x27;s canvas. Each note is a message; any message can branch into alternative replies, and branches can be merged back into one thread. It works with any OpenAI-compatible chat API.</p><p>It reached roughly 400 installs a month, and the AI agency Move 37 used it to test prompts interactively with customers.</p></div>
+          <div class="prose clamp" id="chatstream-text">
+            <p>Chat Stream is a plugin for Obsidian’s canvas. Each note is a message, and the notes upstream of the selected message determine what the AI sees. Users can branch at any message to try different prompts or source notes, then merge branches back into a thread. It works with any OpenAI-compatible chat API.</p>
+            <p>Each branch keeps a visible record of the inputs used for a reply. Users can return to the same starting context, change one input at a time, and compare the results side by side. The canvas makes those experiments reproducible and gives users precise control over what they send to the model without writing code.</p>
+            <p>It reached roughly 400 installs a month, and the AI agency Move 37 used it to test prompts interactively with customers.</p>
+          </div>
           <button type="button" class="more" aria-expanded="false" aria-controls="chatstream-text" hidden>More</button>
         </div>
       </div>
@@ -327,9 +374,16 @@ main .proj:first-of-type{padding-top:64px}
   document.querySelectorAll('.body').forEach((b) => {
     const text = b.querySelector('.clamp');
     const btn = b.querySelector('.more');
-    text.classList.add('is-clamped');
-    if (text.scrollHeight <= text.clientHeight + 24) { text.classList.remove('is-clamped'); return; }
-    btn.hidden = false;
+    const updateClamp = () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      text.classList.add('is-clamped');
+      const hasMore = text.scrollHeight > text.clientHeight + 24;
+      text.classList.toggle('is-clamped', hasMore && !open);
+      btn.hidden = !hasMore;
+    };
+    updateClamp();
+    window.addEventListener('resize', updateClamp);
+    document.fonts.ready.then(updateClamp);
     text.addEventListener('click', () => { if (text.classList.contains('is-clamped')) btn.click(); });
     btn.addEventListener('click', () => {
       const open = btn.getAttribute('aria-expanded') !== 'true';

@@ -12,13 +12,15 @@
 <style>
 :root{
   --bg:#DFDAD0;--fg:#161614;--muted:#55524B;--hair:#C9C3B7;
-  --accent:#B8410E;--media:#ECE9E2;--stage:#F6F4EF;--noise:none;
+  --accent:#3B5A9A;--media:#ECE9E2;--stage:#F6F4EF;--noise:none;
+  --mat:#E9E5DC;--frame:rgba(22,22,20,.14);--drop:rgba(40,34,24,.32);
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --sans:'Inter Tight',system-ui,sans-serif;
   --pad:48px;
+  --gut:104px;--lane2:44px; /* gutter: section-header lane at 0, tech-list lane at --lane2 */
 }
 @media (prefers-color-scheme: dark){
-  :root{--bg:#1E1D1B;--fg:#E9E7E1;--muted:#A9A7A0;--hair:#3A3936;--accent:#F08A5D;--media:#2C2B28;--stage:#191917;--noise:none}
+  :root{--bg:#1E1D1B;--fg:#E9E7E1;--muted:#A9A7A0;--hair:#3A3936;--accent:#8DA4D8;--media:#2C2B28;--stage:#191917;--noise:none;--mat:#272624;--frame:rgba(255,255,255,.09);--drop:rgba(0,0,0,.6)}
 }
 *{box-sizing:border-box}
 body{position:relative;isolation:isolate}
@@ -31,10 +33,26 @@ a:hover{color:var(--accent)}
 .label{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:400}
 
 /* masthead */
-.mast{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding:56px 0 0}
-.mast h1{margin:0;font-size:26px;font-weight:600;letter-spacing:-.015em}
-.mast p{margin:6px 0 0;font-size:16px;color:var(--muted)}
-.mast nav{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;padding-top:6px}
+.mast{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding:64px 0 0 var(--gut)}
+.mast nav{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;padding-top:4px}
+.id{font-family:var(--mono)}
+.id{flex:1 1 auto;min-width:0}
+.id .ps{color:var(--accent)}
+.id h1{margin:0;font-family:var(--mono);font-weight:500;font-size:clamp(36px,5vw,56px);line-height:1;letter-spacing:-.03em;color:var(--fg)}
+.id h1.is-pixel .nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.id .intro{margin:20px 0 0;font-size:15px;color:var(--fg);letter-spacing:.01em}
+.id .intro .ps{margin-right:.6em}
+
+/* rotated gutter labels: read bottom-to-top, rule sits on the content side and runs past the text */
+main,.about{position:relative;padding-left:var(--gut)}
+.vlabel{position:absolute;left:0;margin:0;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-family:var(--mono);text-transform:uppercase}
+.sect{font-size:14px;font-weight:500;letter-spacing:.16em;color:var(--fg);border-left:2px solid var(--accent);padding:40px 0 0 10px}
+main > .sect{top:64px}
+.about > .sect{top:104px}
+/* starts level with the bottom of the media/thumbnails (.detail sits 48px below it) */
+.tech{list-style:none;bottom:calc(100% + 48px);left:calc(var(--lane2) - var(--gut));padding:0 0 28px 8px;border-left:1px solid var(--muted);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.tech li{display:inline}
+.tech li+li::before{content:"\00b7";margin-inline:.7em}
 
 /* index */
 .index{margin:96px 0 0}
@@ -48,11 +66,15 @@ a:hover{color:var(--accent)}
 
 /* project */
 .proj{padding-top:64px;scroll-margin-top:24px}
-main .proj:first-child{padding-top:56px}
-.phead h2{margin:0;font-size:clamp(34px,4.4vw,52px);font-weight:600;letter-spacing:-.03em;line-height:1.05}
-.phead .lede{margin:12px 0 0;max-width:44ch;font-size:20px;line-height:1.45;color:var(--muted)}
-.media{margin-top:40px;display:flex;flex-direction:column;gap:14px}
-.stage{position:relative;aspect-ratio:16/10;background:var(--stage);overflow:hidden;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 24px -12px rgba(0,0,0,.18)}
+main .proj:first-of-type{padding-top:64px}
+.phead{display:flex;align-items:center;gap:56px}
+.phead h2{flex:none;margin:0;font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:-.025em;line-height:1.1}
+.phead .lede{position:relative;min-width:0;margin:0;max-width:52ch;font-size:18px;line-height:1.45;color:var(--muted)}
+.phead .lede::before{content:"";position:absolute;left:-28px;top:50%;width:8px;height:8px;border-radius:2px;background:var(--accent);transform:translate(-50%,-50%)}
+.media{margin-top:40px;display:flex;flex-direction:column;gap:28px}
+.stage{position:relative;aspect-ratio:16/10;background:var(--stage);overflow:hidden;border-radius:3px;
+  /* mounted-print frame: hairline, 9px mat, hairline, then a long soft drop */
+  box-shadow:0 0 0 1px var(--frame),0 0 0 9px var(--mat),0 0 0 10px var(--frame),0 34px 56px -30px var(--drop)}
 .slide{position:absolute;inset:0}
 .slide[hidden]{display:none}
 .slide img,.slide video{width:100%;height:100%;object-fit:contain;display:block}
@@ -71,12 +93,11 @@ main .proj:first-child{padding-top:56px}
 .play::after{content:"";position:absolute;left:8px;top:6px;border-left:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent}
 .tlabel{font-family:var(--mono);font-size:11px;line-height:1.35;color:var(--muted)}
 
-.detail{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;margin-top:48px}
+.detail{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;margin-top:48px}
 .facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.45}
 .fi{display:flex;align-items:center;gap:10px}
 .fi svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--muted);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
 .ctx{color:var(--muted)}
-.tags{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:12px;color:var(--muted)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .body{min-width:0;max-width:62ch;display:flex;flex-direction:column;align-items:center}
 .body .prose{align-self:stretch}
@@ -91,19 +112,29 @@ main .proj:first-child{padding-top:56px}
 
 /* about + footer */
 .about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;padding-top:104px}
-.about h2{margin:4px 0 0}
+.about .prose{grid-column:2}
 .about .prose p:last-child{margin-bottom:0}
-.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:88px;padding:28px 0 48px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:13px;color:var(--muted)}
+.foot{margin-left:var(--gut);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:88px;padding:28px 0 48px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:13px;color:var(--muted)}
 .foot nav{display:flex;gap:20px;flex-wrap:wrap}
 
 @media (max-width: 800px){
   :root{--pad:20px}
-  .mast{padding-top:32px}
+  :root{--gut:0px}
+  .mast{padding-top:36px}
+  .vlabel{position:static;writing-mode:horizontal-tb;transform:none;display:inline-block}
+  .sect{border-left:0;border-bottom:2px solid var(--accent);padding:0 40px 6px 0}
+  main > .sect{margin-top:56px}
+  .about > .sect{justify-self:start}
+  .tech{border-left:0;border-bottom:1px solid var(--muted);padding:0 28px 6px 0;white-space:normal;justify-self:start}
+  .about .prose{grid-column:auto}
+  .phead{display:block}
+  .phead .lede{margin-top:10px}
+  .phead .lede::before{display:none}
   .index{margin-top:56px}
   .index a{grid-template-columns:minmax(0,1fr) auto;gap:4px 16px}
   .td{grid-column:1/-1;grid-row:2;font-size:15px}
   .proj{padding-top:48px}
-  main .proj:first-child{padding-top:48px}
+  main .proj:first-of-type{padding-top:32px}
   .phead .lede{font-size:18px}
   .media{margin-top:24px}
   .thumbs{flex-wrap:nowrap;gap:10px}
@@ -111,7 +142,6 @@ main .proj:first-child{padding-top:56px}
   .timg{width:100%;height:auto;aspect-ratio:16/10}
   .detail,.about{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:28px}
   .facts{flex-direction:row;flex-wrap:wrap;gap:10px 22px}
-  .facts > li:last-child{flex-basis:100%}
   .prose{font-size:17px}
   .about{padding-top:72px}
 }
@@ -122,9 +152,9 @@ main .proj:first-child{padding-top:56px}
 <div class="bg" aria-hidden="true"></div>
 <div class="wrap">
   <header class="mast">
-    <div>
-      <h1>Ryan P Smith</h1>
-      <p>Product engineer · West Linn, Oregon</p>
+    <div class="id">
+      <h1 id="name"><span class="nm">Ryan P Smith</span></h1>
+      <p class="intro"><span class="ps" aria-hidden="true">&gt;</span>Product engineer · West Linn, Oregon</p>
     </div>
     <nav aria-label="Contact">
       <a href="mailto:ryan.smith@pobox.com">Email</a>
@@ -134,7 +164,7 @@ main .proj:first-child{padding-top:56px}
   </header>
 
   <main>
-    
+    <h2 class="vlabel sect">Projects</h2>
     <section class="proj" id="remfind" aria-labelledby="remfind-t">
       <header class="phead">
         <h2 id="remfind-t">Remnant Locator</h2>
@@ -149,9 +179,8 @@ main .proj:first-child{padding-top:56px}
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2025</span></li>
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Product and system design</span></li>
           <li class="ctx">For Remfind, through Machine Intent</li>
-          
-          <li><ul class="tags" aria-label="Stack"><li>PWA</li><li>Preact</li><li>Convex</li><li>Web Push</li><li>Stripe</li><li>AI agents</li></ul></li>
         </ul>
+        <ul class="vlabel tech" aria-label="Stack"><li>PWA</li><li>Preact</li><li>Convex</li><li>Web Push</li><li>Stripe</li><li>AI agents</li></ul>
         <div class="body">
           <div class="prose clamp" id="remfind-text"><p>Fabrication shops often need a small piece of a specific stone for a job, and the nearest source is usually another shop&#x27;s remnant rack. In Remnant Locator a shop posts what it needs, every shop within 25 miles gets a push notification, and the two shops message directly. Shops can browse the network without an account; posting and replying require a paid membership, which is also how the founder is validating demand.</p><p>This was the founder&#x27;s first software product, so I also acted as product manager. I kept the transaction between shops rather than mediated by the platform, gave each shop one shared account with equal permissions, and designed for use on a phone between jobs, with no feature more than three taps from the navigation bar. The hardest model to get right was shop-wide threads with read state tracked per person.</p><p>AI agents wrote the code. I designed the system so they could work in small, bounded modules: app logic sits behind contracts, and the same test assertions run against mocked and real services. The mocked build doubled as the founder&#x27;s demo. Preview environments run simulated shops that become active when a real user is, so matching and notifications can be tested on a populated network. Production deploys are gated behind a passkey that only I hold.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="remfind-text" hidden>More</button>
@@ -172,9 +201,8 @@ main .proj:first-child{padding-top:56px}
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2024–25</span></li>
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Staff engineer</span></li>
           <li class="ctx">Legal AI startup, team of four</li>
-          
-          <li><ul class="tags" aria-label="Stack"><li>Word add-in</li><li>React</li><li>Jotai</li><li>Go</li><li>LLM</li></ul></li>
         </ul>
+        <ul class="vlabel tech" aria-label="Stack"><li>Word add-in</li><li>React</li><li>Jotai</li><li>Go</li><li>LLM</li></ul>
         <div class="body">
           <div class="prose clamp" id="pincites-text"><p>Lawyers work with Pincites in a side panel inside Word. It reviews a contract against the team&#x27;s negotiation playbook, drafts clauses, and applies its suggested edits as tracked changes, so the output stays in the document lawyers already use.</p><p>I owned the frontend and architected the AI chat system. Chat originally required picking a workflow (review, drafting, summary) up front. I proposed one chat that moves between modes based on what the user asks, with a lightweight intent step that runs before the full document is loaded into the model&#x27;s context. Refusals became consistent, tests could target each step, and the design became part of the sales demo.</p><p>Word add-ins run inside Word, so the code that edits documents could not be tested from outside. I built a harness that injects a test module into development builds and reports back to a local service, which made tracked changes, comments and table edits testable and exposed several Word API bugs we then worked around. I also moved application state onto Jotai stores with separate commands and queries, and traced a 6 to 7x slowdown in the Go review pipeline to a library&#x27;s default concurrency cap.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="pincites-text" hidden>More</button>
@@ -195,9 +223,8 @@ main .proj:first-child{padding-top:56px}
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2021–23</span></li>
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Lead developer</span></li>
           <li class="ctx">Location tracking platform</li>
-          
-          <li><ul class="tags" aria-label="Stack"><li>React</li><li>TypeScript</li><li>GraphQL</li><li>MapLibre</li><li>Recharts</li></ul></li>
         </ul>
+        <ul class="vlabel tech" aria-label="Stack"><li>React</li><li>TypeScript</li><li>GraphQL</li><li>MapLibre</li><li>Recharts</li></ul>
         <div class="body">
           <div class="prose clamp" id="hypertrack-text"><p>HyperTrack provides live location tracking for field workforces. Its operations apps let customers monitor workers, trips and tracking health across a fleet, and diagnose why a device stopped reporting.</p><p>I led product-experience engineering for those apps. With a newly hired product manager I redesigned the main dashboard: one filter state shared and deep-linkable across every view, interactive KPI charts, outage charts that show the cause on hover, and compact spark charts in each table row. Dashboard usage rose about fivefold after the release, and sales began using it in demos. I recorded the launch walkthroughs shown here.</p><p>The redesign depended on groundwork. Each page had its own state handling and URL conventions, so I moved shared state into common stores, converted the most depended-on code to TypeScript, and generated typed GraphQL clients for the team. I also built the MapLibre map components the team reused, a geofence editor on Mapbox satellite imagery, and reduced map tile costs by at least 30% through render fixes and per-view tile sources.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="hypertrack-text" hidden>More</button>
@@ -218,9 +245,8 @@ main .proj:first-child{padding-top:56px}
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2019–21</span></li>
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Lead developer</span></li>
           <li class="ctx">Sales startup, acquired by Clari in 2021</li>
-          
-          <li><ul class="tags" aria-label="Stack"><li>React</li><li>TypeScript</li><li>D3</li><li>Kotlin</li><li>Ant Design</li></ul></li>
         </ul>
+        <ul class="vlabel tech" aria-label="Stack"><li>React</li><li>TypeScript</li><li>D3</li><li>Kotlin</li><li>Ant Design</li></ul>
         <div class="body">
           <div class="prose clamp" id="dealpoint-text"><p>Enterprise deals take months, and they usually stall because the buyer&#x27;s team gets busy, not because they object. DealPoint gives both sides one mutual action plan: a timeline of the milestones, owners and dates that lead to a signed contract.</p><p>The founder&#x27;s specification described a broad sales platform. I argued for an MVP built around the action plan alone, then ran a design cycle with the CEO and a visual designer centered on one moment: the buyer&#x27;s champion showing the plan to their boss in a few seconds. The simplified plan format that came out of it stayed in the product. Customers were onboarding about six months after the reset, and Clari later acquired DealPoint and kept the product.</p><p>I chose the stack (Kotlin, React, TypeScript, Ant Design), designed the API, and built the frontend. The centerpiece was an interactive timeline in D3 and SVG that lays the seller&#x27;s relative deal template over the buyer&#x27;s real calendar, shows which milestones are likely to slip, and lets users drag dates and preview the result before saving.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="dealpoint-text" hidden>More</button>
@@ -242,8 +268,8 @@ main .proj:first-child{padding-top:56px}
           <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Author</span></li>
           <li class="ctx">Open-source Obsidian plugin</li>
           <li class="ext"><a href="https://community.obsidian.md/plugins/chat-stream">Obsidian plugin page ↗</a></li>
-          <li><ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Obsidian</li><li>LLM</li></ul></li>
         </ul>
+        <ul class="vlabel tech" aria-label="Stack"><li>TypeScript</li><li>Obsidian</li><li>LLM</li></ul>
         <div class="body">
           <div class="prose clamp" id="chatstream-text"><p>Chat Stream is a plugin for Obsidian&#x27;s canvas. Each note is a message; any message can branch into alternative replies, and branches can be merged back into one thread. It works with any OpenAI-compatible chat API.</p><p>It reached roughly 400 installs a month, and the AI agency Move 37 used it to test prompts interactively with customers.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="chatstream-text" hidden>More</button>
@@ -253,10 +279,10 @@ main .proj:first-child{padding-top:56px}
   </main>
 
   <section class="about" id="about" aria-labelledby="about-t">
-    <h2 class="label" id="about-t">About</h2>
+    <h2 class="vlabel sect" id="about-t">About</h2>
     <div class="prose">
       <p>I have built web applications for over twenty years, most recently as a staff and lead engineer at early-stage companies. The work I do best sits between product and engineering: settling scope with founders and product managers, designing the core interaction and data model, and building a frontend the team can keep extending.</p>
-      <p>Most of that work is in React and TypeScript, with state and data modeling, interactive visualization and maps, and backend work in Python, Go and Kotlin. Recently I have been building AI products, and building with AI agents as the primary implementers under a design and review process I set up.</p>
+      <p>Most of that work is in React and TypeScript, with state and data modeling, interactive visualization and maps, and backend work in TypeScript, Go, C#, Python and Kotlin. Recently I have been building AI products, and building with AI agents as the primary implementers under a design and review process I set up.</p>
     </div>
   </section>
 
@@ -325,6 +351,8 @@ main .proj:first-child{padding-top:56px}
 </script>
 <script type="module">
 import { createHeatGrid } from './heatgrid-life.js';
+import { createPixelName } from './pixelname-life.js';
+createPixelName(document.getElementById('name'), 'Ryan P Smith');
 // intensity applies to dark (white ink); light mode gets intensity * lightScale.
 createHeatGrid(document.querySelector('.bg'), { intensity: 0.035, lightScale: 1.4667, emptyAlpha: 0.004 });
 </script>

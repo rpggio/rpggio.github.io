@@ -188,7 +188,7 @@ export function createPixelName(el, text, opts = {}) {
     if (!raf && visible && !mqReduce.matches) raf = requestAnimationFrame(frame);
   }
 
-  canvas.title = 'Ryan P Smith. Hover for a solid view; the letters are a Game of Life.';
+  canvas.title = 'Ryan P Smith';
   canvas.addEventListener('mouseenter', () => { hover = true; draw(); });
   canvas.addEventListener('mouseleave', () => { hover = false; draw(); });
   readInk();

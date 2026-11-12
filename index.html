@@ -1,23 +1,327 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ryan Smith | Software Engineer</title>
-  <style>
-    body {
-      max-width: 720px;
-      margin: 80px auto;
-      padding: 0 24px;
-      font: 18px/1.6 system-ui, sans-serif;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ryan P Smith · Projects</title>
+<meta name="description" content="Selected product engineering work by Ryan P Smith.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#DFDAD0;--fg:#161614;--muted:#55524B;--hair:#C9C3B7;
+  --accent:#B8410E;--media:#ECE9E2;--stage:#F6F4EF;--noise:none;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter Tight',system-ui,sans-serif;
+  --pad:48px;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#22211F;--fg:#E9E7E1;--muted:#A9A7A0;--hair:#3A3936;--accent:#F08A5D;--media:#2C2B28;--stage:#191917;--noise:none}
+}
+*{box-sizing:border-box}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.055 .075' numOctaves='5' seed='4' stitchTiles='stitch' result='n'/%3E%3CfeDiffuseLighting in='n' lighting-color='%23fff' surfaceScale='1.6'%3E%3CfeDistantLight azimuth='60' elevation='55'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");background-size:320px;opacity:.3;mix-blend-mode:multiply}
+@media (prefers-color-scheme: dark){body::before{opacity:.14;mix-blend-mode:soft-light}}
+body{position:relative;isolation:isolate}
+body{margin:0;background-color:var(--bg);color:var(--fg);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--pad)}
+.label{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:400}
+
+/* masthead */
+.mast{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;padding:56px 0 0}
+.mast h1{margin:0;font-size:26px;font-weight:600;letter-spacing:-.015em}
+.mast p{margin:6px 0 0;font-size:16px;color:var(--muted)}
+.mast nav{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;padding-top:6px}
+
+/* index */
+.index{margin:96px 0 0}
+.index ol{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--hair)}
+.index li{border-bottom:1px solid var(--hair)}
+.index a{display:grid;grid-template-columns:220px minmax(0,1fr) 90px;gap:24px;align-items:baseline;padding:14px 0;text-decoration:none}
+.tn{font-weight:600;font-size:17px}
+.td{color:var(--muted);font-size:16px}
+.ty{font-family:var(--mono);font-size:13px;color:var(--muted);text-align:right}
+.index a:hover .tn{color:var(--accent)}
+
+/* project */
+.proj{padding-top:64px;scroll-margin-top:24px}
+main .proj:first-child{padding-top:56px}
+.phead h2{margin:0;font-size:clamp(34px,4.4vw,52px);font-weight:600;letter-spacing:-.03em;line-height:1.05}
+.phead .lede{margin:12px 0 0;max-width:44ch;font-size:20px;line-height:1.45;color:var(--muted)}
+.media{margin-top:40px;display:flex;flex-direction:column;gap:14px}
+.stage{position:relative;aspect-ratio:16/10;background:var(--stage);overflow:hidden;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 24px -12px rgba(0,0,0,.18)}
+.slide{position:absolute;inset:0}
+.slide[hidden]{display:none}
+.slide img,.slide video{width:100%;height:100%;object-fit:contain;display:block}
+.slide-video{background:#141414}
+.slide-yt{display:flex;align-items:center;background:#000}
+.slide-yt iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
+.thumbs{display:flex;gap:12px;flex-wrap:wrap}
+.thumb{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;width:120px}
+.thumb:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.timg{position:relative;display:block;width:120px;height:75px;background:var(--media);border-radius:2px;overflow:hidden}
+.timg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.55;transition:opacity .2s}
+.thumb:hover .timg img{opacity:.85}
+.thumb[aria-pressed="true"] .timg{outline:2px solid var(--accent);outline-offset:2px}
+.thumb[aria-pressed="true"] .timg img{opacity:1}
+.play{position:absolute;right:6px;bottom:6px;width:20px;height:20px;border-radius:50%;background:#141414}
+.play::after{content:"";position:absolute;left:8px;top:6px;border-left:6px solid #fff;border-top:4px solid transparent;border-bottom:4px solid transparent}
+.tlabel{font-family:var(--mono);font-size:11px;line-height:1.35;color:var(--muted)}
+
+.detail{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;margin-top:48px}
+.facts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.45}
+.fi{display:flex;align-items:center;gap:10px}
+.fi svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--muted);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.ctx{color:var(--muted)}
+.tags{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.body{min-width:0;max-width:62ch;display:flex;flex-direction:column;align-items:center}
+.body .prose{align-self:stretch}
+.clamp.is-clamped{cursor:pointer}
+.clamp.is-clamped{max-height:12.5em;overflow:hidden;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.more{all:unset;cursor:pointer;margin-top:2px;font-family:var(--mono);font-size:13px;color:var(--fg);display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.more::before{content:"[";color:var(--muted)}.more::after{content:"]";color:var(--muted)}
+.more:hover{color:var(--accent)}
+.more:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.prose{font-size:18px;line-height:1.65;max-width:62ch}
+.prose p{margin:0 0 1.1em}
+
+/* about + footer */
+.about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;padding-top:104px}
+.about h2{margin:4px 0 0}
+.about .prose p:last-child{margin-bottom:0}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:88px;padding:28px 0 48px;border-top:1px solid var(--hair);font-family:var(--mono);font-size:13px;color:var(--muted)}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap}
+
+@media (max-width: 800px){
+  :root{--pad:20px}
+  .mast{padding-top:32px}
+  .index{margin-top:56px}
+  .index a{grid-template-columns:minmax(0,1fr) auto;gap:4px 16px}
+  .td{grid-column:1/-1;grid-row:2;font-size:15px}
+  .proj{padding-top:48px}
+  main .proj:first-child{padding-top:48px}
+  .phead .lede{font-size:18px}
+  .media{margin-top:24px}
+  .thumbs{flex-wrap:nowrap;gap:10px}
+  .thumb{flex:1 1 0;width:auto;min-width:0}
+  .timg{width:100%;height:auto;aspect-ratio:16/10}
+  .detail,.about{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:28px}
+  .facts{flex-direction:row;flex-wrap:wrap;gap:10px 22px}
+  .facts > li:last-child{flex-basis:100%}
+  .prose{font-size:17px}
+  .about{padding-top:72px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none !important}}
+</style>
 </head>
 <body>
-  <h1>Ryan Smith</h1>
-  <p>Software engineer. Projects, writing, and experiments.</p>
-  <p>
-    <a href="https://github.com/ryansmith">GitHub</a>
-  </p>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1>Ryan P Smith</h1>
+      <p>Product engineer · West Linn, Oregon</p>
+    </div>
+    <nav aria-label="Contact">
+      <a href="mailto:ryan.smith@pobox.com">Email</a>
+      <a href="https://linkedin.com/in/rpggio">LinkedIn</a>
+      <a href="https://github.com/rpggio">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    
+    <section class="proj" id="remfind" aria-labelledby="remfind-t">
+      <header class="phead">
+        <h2 id="remfind-t">Remnant Locator</h2>
+        <p class="lede">A mobile web app that helps countertop fabricators find leftover stone at nearby shops.</p>
+      </header>
+      <div class="media">
+        <div class="stage" id="remfind-stage"><div class="slide slide-video" data-i="0"><video src="media/remfind-walkthrough.webm" poster="media/remfind-poster.jpg" muted loop playsinline controls preload="metadata"></video></div><div class="slide slide-img" data-i="1" hidden><img src="media/remfind-app-wide.jpg" alt="Remnant Locator: Home screen" loading="lazy"></div></div>
+        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="remfind-stage"><span class="timg"><img src="media/remfind-poster.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="tlabel">Walkthrough, 40s</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="remfind-stage"><span class="timg"><img src="media/remfind-app-wide.jpg" alt="" loading="lazy"></span><span class="tlabel">Home screen</span></button></div>
+      </div>
+      <div class="detail">
+        <ul class="facts">
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2025</span></li>
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Product and system design</span></li>
+          <li class="ctx">For Remfind, through Machine Intent</li>
+          
+          <li><ul class="tags" aria-label="Stack"><li>PWA</li><li>Preact</li><li>Convex</li><li>Web Push</li><li>Stripe</li><li>AI agents</li></ul></li>
+        </ul>
+        <div class="body">
+          <div class="prose clamp" id="remfind-text"><p>Fabrication shops often need a small piece of a specific stone for a job, and the nearest source is usually another shop&#x27;s remnant rack. In Remnant Locator a shop posts what it needs, every shop within 25 miles gets a push notification, and the two shops message directly. Shops can browse the network without an account; posting and replying require a paid membership, which is also how the founder is validating demand.</p><p>This was the founder&#x27;s first software product, so I also acted as product manager. I kept the transaction between shops rather than mediated by the platform, gave each shop one shared account with equal permissions, and designed for use on a phone between jobs, with no feature more than three taps from the navigation bar. The hardest model to get right was shop-wide threads with read state tracked per person.</p><p>AI agents wrote the code. I designed the system so they could work in small, bounded modules: app logic sits behind contracts, and the same test assertions run against mocked and real services. The mocked build doubled as the founder&#x27;s demo. Preview environments run simulated shops that become active when a real user is, so matching and notifications can be tested on a populated network. Production deploys are gated behind a passkey that only I hold.</p></div>
+          <button type="button" class="more" aria-expanded="false" aria-controls="remfind-text" hidden>More</button>
+        </div>
+      </div>
+    </section>
+    <section class="proj" id="pincites" aria-labelledby="pincites-t">
+      <header class="phead">
+        <h2 id="pincites-t">Pincites</h2>
+        <p class="lede">A Microsoft Word add-in that reviews and drafts contracts against a legal team&#x27;s playbook.</p>
+      </header>
+      <div class="media">
+        <div class="stage" id="pincites-stage"><div class="slide slide-img" data-i="0"><img src="media/pincites-drafting.jpg" alt="Pincites: Drafting" loading="lazy"></div><div class="slide slide-img" data-i="1" hidden><img src="media/pincites-redline-wd.jpg" alt="Pincites: Redline review" loading="lazy"></div></div>
+        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="pincites-stage"><span class="timg"><img src="media/pincites-drafting.jpg" alt="" loading="lazy"></span><span class="tlabel">Drafting</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="pincites-stage"><span class="timg"><img src="media/pincites-redline-wd.jpg" alt="" loading="lazy"></span><span class="tlabel">Redline review</span></button></div>
+      </div>
+      <div class="detail">
+        <ul class="facts">
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2024–25</span></li>
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Staff engineer</span></li>
+          <li class="ctx">Legal AI startup, team of four</li>
+          
+          <li><ul class="tags" aria-label="Stack"><li>Word add-in</li><li>React</li><li>Jotai</li><li>Go</li><li>LLM</li></ul></li>
+        </ul>
+        <div class="body">
+          <div class="prose clamp" id="pincites-text"><p>Lawyers work with Pincites in a side panel inside Word. It reviews a contract against the team&#x27;s negotiation playbook, drafts clauses, and applies its suggested edits as tracked changes, so the output stays in the document lawyers already use.</p><p>I owned the frontend and architected the AI chat system. Chat originally required picking a workflow (review, drafting, summary) up front. I proposed one chat that moves between modes based on what the user asks, with a lightweight intent step that runs before the full document is loaded into the model&#x27;s context. Refusals became consistent, tests could target each step, and the design became part of the sales demo.</p><p>Word add-ins run inside Word, so the code that edits documents could not be tested from outside. I built a harness that injects a test module into development builds and reports back to a local service, which made tracked changes, comments and table edits testable and exposed several Word API bugs we then worked around. I also moved application state onto Jotai stores with separate commands and queries, and traced a 6 to 7x slowdown in the Go review pipeline to a library&#x27;s default concurrency cap.</p></div>
+          <button type="button" class="more" aria-expanded="false" aria-controls="pincites-text" hidden>More</button>
+        </div>
+      </div>
+    </section>
+    <section class="proj" id="hypertrack" aria-labelledby="hypertrack-t">
+      <header class="phead">
+        <h2 id="hypertrack-t">HyperTrack Ops</h2>
+        <p class="lede">Operations dashboards and maps for companies tracking field workers in real time.</p>
+      </header>
+      <div class="media">
+        <div class="stage" id="hypertrack-stage"><div class="slide slide-img" data-i="0"><img src="media/hypertrack-dashboard.jpg" alt="HyperTrack Ops: Outage dashboard" loading="lazy"></div><div class="slide slide-yt" data-i="1" hidden><iframe data-src="https://www.youtube-nocookie.com/embed/aVXcn5LBhp0?rel=0" title="Outage tracking" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div><div class="slide slide-yt" data-i="2" hidden><iframe data-src="https://www.youtube-nocookie.com/embed/hSkccjN9z_I?rel=0" title="Geofence editor" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div></div>
+        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="hypertrack-stage"><span class="timg"><img src="media/hypertrack-dashboard.jpg" alt="" loading="lazy"></span><span class="tlabel">Outage dashboard</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="hypertrack-stage"><span class="timg"><img src="media/ht-outage-video.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="tlabel">Outage tracking</span></button><button type="button" class="thumb" data-i="2" aria-pressed="false" aria-controls="hypertrack-stage"><span class="timg"><img src="media/ht-geofence-video.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="tlabel">Geofence editor</span></button></div>
+      </div>
+      <div class="detail">
+        <ul class="facts">
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2021–23</span></li>
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Lead developer</span></li>
+          <li class="ctx">Location tracking platform</li>
+          
+          <li><ul class="tags" aria-label="Stack"><li>React</li><li>TypeScript</li><li>GraphQL</li><li>MapLibre</li><li>Recharts</li></ul></li>
+        </ul>
+        <div class="body">
+          <div class="prose clamp" id="hypertrack-text"><p>HyperTrack provides live location tracking for field workforces. Its operations apps let customers monitor workers, trips and tracking health across a fleet, and diagnose why a device stopped reporting.</p><p>I led product-experience engineering for those apps. With a newly hired product manager I redesigned the main dashboard: one filter state shared and deep-linkable across every view, interactive KPI charts, outage charts that show the cause on hover, and compact spark charts in each table row. Dashboard usage rose about fivefold after the release, and sales began using it in demos. I recorded the launch walkthroughs shown here.</p><p>The redesign depended on groundwork. Each page had its own state handling and URL conventions, so I moved shared state into common stores, converted the most depended-on code to TypeScript, and generated typed GraphQL clients for the team. I also built the MapLibre map components the team reused, a geofence editor on Mapbox satellite imagery, and reduced map tile costs by at least 30% through render fixes and per-view tile sources.</p></div>
+          <button type="button" class="more" aria-expanded="false" aria-controls="hypertrack-text" hidden>More</button>
+        </div>
+      </div>
+    </section>
+    <section class="proj" id="dealpoint" aria-labelledby="dealpoint-t">
+      <header class="phead">
+        <h2 id="dealpoint-t">DealPoint</h2>
+        <p class="lede">A shared deal room where enterprise sellers and buyers plan a purchase together.</p>
+      </header>
+      <div class="media">
+        <div class="stage" id="dealpoint-stage"><div class="slide slide-img" data-i="0"><img src="media/dealpoint-promo.jpg" alt="DealPoint: Product overview" loading="lazy"></div></div>
+        
+      </div>
+      <div class="detail">
+        <ul class="facts">
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2019–21</span></li>
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Lead developer</span></li>
+          <li class="ctx">Sales startup, acquired by Clari in 2021</li>
+          
+          <li><ul class="tags" aria-label="Stack"><li>React</li><li>TypeScript</li><li>D3</li><li>Kotlin</li><li>Ant Design</li></ul></li>
+        </ul>
+        <div class="body">
+          <div class="prose clamp" id="dealpoint-text"><p>Enterprise deals take months, and they usually stall because the buyer&#x27;s team gets busy, not because they object. DealPoint gives both sides one mutual action plan: a timeline of the milestones, owners and dates that lead to a signed contract.</p><p>The founder&#x27;s specification described a broad sales platform. I argued for an MVP built around the action plan alone, then ran a design cycle with the CEO and a visual designer centered on one moment: the buyer&#x27;s champion showing the plan to their boss in a few seconds. The simplified plan format that came out of it stayed in the product. Customers were onboarding about six months after the reset, and Clari later acquired DealPoint and kept the product.</p><p>I chose the stack (Kotlin, React, TypeScript, Ant Design), designed the API, and built the frontend. The centerpiece was an interactive timeline in D3 and SVG that lays the seller&#x27;s relative deal template over the buyer&#x27;s real calendar, shows which milestones are likely to slip, and lets users drag dates and preview the result before saving.</p></div>
+          <button type="button" class="more" aria-expanded="false" aria-controls="dealpoint-text" hidden>More</button>
+        </div>
+      </div>
+    </section>
+    <section class="proj" id="chatstream" aria-labelledby="chatstream-t">
+      <header class="phead">
+        <h2 id="chatstream-t">Chat Stream</h2>
+        <p class="lede">Branching AI conversations on a visual canvas.</p>
+      </header>
+      <div class="media">
+        <div class="stage" id="chatstream-stage"><div class="slide slide-img" data-i="0"><img src="media/chat-stream-example.jpg" alt="Chat Stream: Branching thread" loading="lazy"></div><div class="slide slide-img" data-i="1" hidden><img src="media/chat-stream-example-2.jpg" alt="Chat Stream: Planning canvas" loading="lazy"></div></div>
+        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="chatstream-stage"><span class="timg"><img src="media/chat-stream-example.jpg" alt="" loading="lazy"></span><span class="tlabel">Branching thread</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="chatstream-stage"><span class="timg"><img src="media/chat-stream-example-2.jpg" alt="" loading="lazy"></span><span class="tlabel">Planning canvas</span></button></div>
+      </div>
+      <div class="detail">
+        <ul class="facts">
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="10.5" rx="1.5"/><path d="M2 7h12M5.5 2v3M10.5 2v3"/></svg><span><span class="sr">Year: </span>2023</span></li>
+          <li class="fi"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="12" height="8.5" rx="1.5"/><path d="M6 5V3.5A1 1 0 0 1 7 2.5h2a1 1 0 0 1 1 1V5M2 9h12"/></svg><span><span class="sr">Role: </span>Author</span></li>
+          <li class="ctx">Open-source Obsidian plugin</li>
+          <li class="ext"><a href="https://community.obsidian.md/plugins/chat-stream">Obsidian plugin page ↗</a></li>
+          <li><ul class="tags" aria-label="Stack"><li>TypeScript</li><li>Obsidian</li><li>LLM</li></ul></li>
+        </ul>
+        <div class="body">
+          <div class="prose clamp" id="chatstream-text"><p>Chat Stream is a plugin for Obsidian&#x27;s canvas. Each note is a message; any message can branch into alternative replies, and branches can be merged back into one thread. It works with any OpenAI-compatible chat API.</p><p>It reached roughly 400 installs a month, and the AI agency Move 37 used it to test prompts interactively with customers.</p></div>
+          <button type="button" class="more" aria-expanded="false" aria-controls="chatstream-text" hidden>More</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="about" id="about" aria-labelledby="about-t">
+    <h2 class="label" id="about-t">About</h2>
+    <div class="prose">
+      <p>I have built web applications for over twenty years, most recently as a staff and lead engineer at early-stage companies. The work I do best sits between product and engineering: settling scope with founders and product managers, designing the core interaction and data model, and building a frontend the team can keep extending.</p>
+      <p>Most of that work is in React and TypeScript, with state and data modeling, interactive visualization and maps, and backend work in Python, Go and Kotlin. Recently I have been building AI products, and building with AI agents as the primary implementers under a design and review process I set up.</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Ryan P Smith</span>
+    <nav aria-label="Contact">
+      <a href="mailto:ryan.smith@pobox.com">ryan.smith@pobox.com</a>
+      <a href="https://linkedin.com/in/rpggio">LinkedIn</a>
+      <a href="https://github.com/rpggio">GitHub</a>
+    </nav>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const visible = new Set();
+
+  function show(stage, i) {
+    stage.querySelectorAll('.slide').forEach((s) => {
+      const on = s.dataset.i === String(i);
+      s.hidden = !on;
+      const v = s.querySelector('video');
+      const f = s.querySelector('iframe');
+      if (!on) { if (v) v.pause(); if (f) f.removeAttribute('src'); return; }
+      if (f && !f.getAttribute('src')) f.setAttribute('src', f.dataset.src);
+      if (v && !reduce && visible.has(stage)) v.play().catch(() => {});
+    });
+  }
+
+  document.querySelectorAll('.proj').forEach((p) => {
+    const stage = p.querySelector('.stage');
+    p.querySelectorAll('.thumb').forEach((t) => t.addEventListener('click', () => {
+      p.querySelectorAll('.thumb').forEach((x) => x.setAttribute('aria-pressed', String(x === t)));
+      show(stage, t.dataset.i);
+    }));
+    const first = stage.querySelector('.slide:not([hidden]) iframe');
+    if (first) first.setAttribute('src', first.dataset.src);
+  });
+
+  // Long project text: show a faded preview with a [more] toggle.
+  document.querySelectorAll('.body').forEach((b) => {
+    const text = b.querySelector('.clamp');
+    const btn = b.querySelector('.more');
+    text.classList.add('is-clamped');
+    if (text.scrollHeight <= text.clientHeight + 24) { text.classList.remove('is-clamped'); return; }
+    btn.hidden = false;
+    text.addEventListener('click', () => { if (text.classList.contains('is-clamped')) btn.click(); });
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      text.classList.toggle('is-clamped', !open);
+      btn.textContent = open ? 'Less' : 'More';
+      if (!open) text.scrollIntoView({ block: 'nearest' });
+    });
+  });
+
+  // Muted videos play only while on screen.
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    const v = en.target.querySelector('.slide:not([hidden]) video');
+    if (en.isIntersecting) { visible.add(en.target); if (v && !reduce) v.play().catch(() => {}); }
+    else { visible.delete(en.target); if (v) v.pause(); }
+  }), { threshold: 0.4 });
+  document.querySelectorAll('.stage').forEach((s) => io.observe(s));
+})();
+</script>
 </body>
 </html>

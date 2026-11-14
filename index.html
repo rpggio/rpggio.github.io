@@ -174,7 +174,7 @@ main .proj:first-of-type{padding-top:64px}
     <section class="proj" id="pdf-mira" aria-labelledby="pdf-mira-t">
       <header class="phead">
         <h2 id="pdf-mira-t">PDF Mira</h2>
-        <p class="lede">A research PDF reader proof of concept that links AI-generated argument maps to passages in the paper.</p>
+        <p class="lede">A prototype PDF reader that links a paper’s argument map to the passages it’s based on.</p>
       </header>
       <div class="media">
         <div class="stage" id="pdf-mira-stage">
@@ -185,7 +185,7 @@ main .proj:first-of-type{padding-top:64px}
         <div class="thumbs">
           <button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-map.jpg" alt=""></span><span class="tlabel">Argument map</span></button>
           <button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-sequence.jpg" alt="" loading="lazy"></span><span class="tlabel">Sequence view</span></button>
-          <button type="button" class="thumb" data-i="2" aria-pressed="false" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-library.jpg" alt=""><span class="play" aria-hidden="true"></span></span><span class="tlabel">Walkthrough, 21s</span></button>
+          <button type="button" class="thumb" data-i="2" aria-pressed="false" aria-controls="pdf-mira-stage"><span class="timg"><img src="media/pdf-mira-library.jpg" alt=""><span class="play" aria-hidden="true"></span></span><span class="tlabel">Walkthrough</span></button>
         </div>
       </div>
       <div class="detail">
@@ -198,7 +198,7 @@ main .proj:first-of-type{padding-top:64px}
         <ul class="vlabel tech" aria-label="Stack"><li>React</li><li>TypeScript</li><li>PDF.js</li><li>React Flow</li><li>LLM</li><li>exe.dev</li></ul>
         <div class="body">
           <div class="prose clamp" id="pdf-mira-text">
-            <p>Drawing on Discourse Graphs, PDF Mira explores whether a map of a paper’s questions, claims and evidence can help readers follow its reasoning. Add an arXiv paper and the prototype generates a map in the MIRA format alongside the PDF. Select a card to jump to its source passage, or click a margin mark in the PDF to find the corresponding card.</p>
+            <p>I built PDF Mira to explore whether a map of a paper’s questions, claims and evidence could help readers follow its reasoning. The prototype draws on Discourse Graphs. Add an arXiv paper and the prototype generates a map in the MIRA format alongside the PDF. Select a card to jump to its source passage, or click a margin mark in the PDF to find the corresponding card.</p>
             <p>The map labels inferred links and estimated passage locations, and keeps AI-written card text visually separate from the author’s words. An outline shows how the argument fits together, and the Sequence view follows the order of the paper, scrolling in sync with the PDF.</p>
           </div>
           <button type="button" class="more" aria-expanded="false" aria-controls="pdf-mira-text" hidden>More</button>
@@ -212,7 +212,7 @@ main .proj:first-of-type{padding-top:64px}
       </header>
       <div class="media">
         <div class="stage" id="remfind-stage"><div class="slide slide-video" data-i="0"><video src="media/remfind-walkthrough.webm" poster="media/remfind-poster.jpg" muted loop playsinline controls preload="metadata"></video></div><div class="slide slide-img" data-i="1" hidden><img src="media/remfind-app-wide.jpg" alt="Remnant Locator: Home screen" loading="lazy"></div></div>
-        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="remfind-stage"><span class="timg"><img src="media/remfind-poster.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="tlabel">Walkthrough, 40s</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="remfind-stage"><span class="timg"><img src="media/remfind-app-wide.jpg" alt="" loading="lazy"></span><span class="tlabel">Home screen</span></button></div>
+        <div class="thumbs"><button type="button" class="thumb" data-i="0" aria-pressed="true" aria-controls="remfind-stage"><span class="timg"><img src="media/remfind-poster.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="tlabel">Walkthrough</span></button><button type="button" class="thumb" data-i="1" aria-pressed="false" aria-controls="remfind-stage"><span class="timg"><img src="media/remfind-app-wide.jpg" alt="" loading="lazy"></span><span class="tlabel">Home screen</span></button></div>
       </div>
       <div class="detail">
         <ul class="facts">
@@ -222,7 +222,7 @@ main .proj:first-of-type{padding-top:64px}
         </ul>
         <ul class="vlabel tech" aria-label="Stack"><li>PWA</li><li>Preact</li><li>Convex</li><li>Web Push</li><li>Stripe</li><li>AI agents</li></ul>
         <div class="body">
-          <div class="prose clamp" id="remfind-text"><p>Fabrication shops often need a small piece of a specific stone for a job, and the nearest source is usually another shop&#x27;s remnant rack. In Remnant Locator a shop posts what it needs, every shop within 25 miles gets a push notification, and the two shops message directly. Shops can browse the network without an account; posting and replying require a paid membership, which is also how the founder is validating demand.</p><p>This was the founder&#x27;s first software product, so I also acted as product manager. I kept the transaction between shops rather than mediated by the platform, gave each shop one shared account with equal permissions, and designed for use on a phone between jobs, with no feature more than three taps from the navigation bar. The hardest model to get right was shop-wide threads with read state tracked per person.</p><p>AI agents wrote the code. I designed the system so they could work in small, bounded modules: app logic sits behind contracts, and the same test assertions run against mocked and real services. The mocked build doubled as the founder&#x27;s demo. Preview environments run simulated shops that become active when a real user is, so matching and notifications can be tested on a populated network. Production deploys are gated behind a passkey that only I hold.</p></div>
+          <div class="prose clamp" id="remfind-text"><p>Fabrication shops often need a small piece of a specific stone for a job, and the nearest source is usually another shop&#x27;s remnant rack. In Remnant Locator a shop posts what it needs, every shop within 25 miles gets a push notification, and the two shops message directly. Shops can browse the network without an account; posting and replying require a paid membership, which is also how the founder is validating demand.</p><p>This was the founder&#x27;s first software product, so I also acted as product manager. I kept the transaction between shops rather than mediated by the platform, gave each shop one shared account with equal permissions, and designed for use on a phone between jobs, with no feature more than three taps from the navigation bar. The hardest model to get right was shop-wide threads with read state tracked per person.</p><p>AI agents wrote the code. I designed the system so they could work in small, bounded modules: app logic sits behind contracts, and the same test assertions run against mocked and real services. The mocked build doubled as the founder&#x27;s demo. Preview environments run simulated shops that become active when a real user is, so matching and notifications can be tested on a populated network.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="remfind-text" hidden>More</button>
         </div>
       </div>
@@ -266,7 +266,7 @@ main .proj:first-of-type{padding-top:64px}
         </ul>
         <ul class="vlabel tech" aria-label="Stack"><li>React</li><li>TypeScript</li><li>GraphQL</li><li>MapLibre</li><li>Recharts</li></ul>
         <div class="body">
-          <div class="prose clamp" id="hypertrack-text"><p>HyperTrack provides live location tracking for field workforces. Its operations apps let customers monitor workers, trips and tracking health across a fleet, and diagnose why a device stopped reporting.</p><p>I led product-experience engineering for those apps. With a newly hired product manager I redesigned the main dashboard: one filter state shared and deep-linkable across every view, interactive KPI charts, outage charts that show the cause on hover, and compact spark charts in each table row. Dashboard usage rose about fivefold after the release, and sales began using it in demos. I recorded the launch walkthroughs shown here.</p><p>The redesign depended on groundwork. Each page had its own state handling and URL conventions, so I moved shared state into common stores, converted the most depended-on code to TypeScript, and generated typed GraphQL clients for the team. I also built the MapLibre map components the team reused, a geofence editor on Mapbox satellite imagery, and reduced map tile costs by at least 30% through render fixes and per-view tile sources.</p></div>
+          <div class="prose clamp" id="hypertrack-text"><p>HyperTrack provides live location tracking for field workforces. Its operations apps let customers monitor workers, trips and tracking health across a fleet, and diagnose why a device stopped reporting.</p><p>I led engineering for the operations apps. Dashboard usage rose about fivefold after the redesign, and sales began using it in demos. I worked with a product manager to redesign the main dashboard: one filter state shared and deep-linkable across every view, interactive KPI charts, outage charts that show the cause on hover, and compact spark charts in each table row. I recorded the launch walkthroughs shown here.</p><p>The redesign depended on groundwork. Each page had its own state handling and URL conventions, so I moved shared state into common stores, converted the most depended-on code to TypeScript, and generated typed GraphQL clients for the team. I also built the MapLibre map components the team reused, a geofence editor on Mapbox satellite imagery, and reduced map tile costs by at least 30% through render fixes and per-view tile sources.</p></div>
           <button type="button" class="more" aria-expanded="false" aria-controls="hypertrack-text" hidden>More</button>
         </div>
       </div>
